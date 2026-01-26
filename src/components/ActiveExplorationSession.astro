@@ -160,7 +160,7 @@ const resolveAssetPath = (path) => {
   }
 
   .ae-fade-target {
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     opacity: 1;
   }
 
@@ -242,6 +242,10 @@ const resolveAssetPath = (path) => {
   let isPlaying = false;
   let playInterval = null;
   let to1, to2, to3; // Timeout handles for animation stages
+  const ACTION_FADE_MS = 500;
+  const BETWEEN_ACTION_REST_MS = 300;
+  const REST_FADE_MS = 500;
+  const AUTO_PLAY_INTERVAL_MS = 3000;
 
   const updateStep = (index, animate = false) => {
     const step = steps[index];
@@ -269,7 +273,7 @@ const resolveAssetPath = (path) => {
         // Animation Sequence:
         // 1. Fade out Action
         // 2. Update Action & Fade In
-        // 3. Wait 0.5s
+        // 3. Wait briefly
         // 4. Fade out Rest (Obs, Belief, Truth)
         // 5. Update Rest & Fade In
 
@@ -297,7 +301,7 @@ const resolveAssetPath = (path) => {
                  // Stage 4: Fade out Rest
                  restElements.forEach(el => el.classList.add('ae-fade-out'));
 
-                 to3 = setTimeout(() => {
+                to3 = setTimeout(() => {
                      // Stage 5: Update Rest & Fade In
                      const noObsText = document.getElementById('ae-vision-no-obs');
                      
@@ -329,10 +333,10 @@ const resolveAssetPath = (path) => {
                      }
 
                      restElements.forEach(el => el.classList.remove('ae-fade-out'));
-                 }, 800); // Transition duration (CSS matches this)
+                }, REST_FADE_MS); // Transition duration (CSS matches this)
 
-            }, 500); // Delay between Action update and Rest update
-        }, 800); // Transition duration for Action fade out
+            }, BETWEEN_ACTION_REST_MS); // Delay between Action update and Rest update
+        }, ACTION_FADE_MS); // Transition duration for Action fade out
 
     } else {
         // Immediate update without animation
@@ -447,7 +451,7 @@ const resolveAssetPath = (path) => {
         } else {
           stopPlayback();
         }
-      }, 4000); // 4 seconds per step (allow for slower transition)
+      }, AUTO_PLAY_INTERVAL_MS); // Faster playback per step
     };
 
     if (playPauseButton) {
@@ -462,5 +466,6 @@ const resolveAssetPath = (path) => {
     }
 
     updateStep(0, false);
+    startPlayback();
   });
 </script>
