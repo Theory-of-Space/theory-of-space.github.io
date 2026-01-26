@@ -1,0 +1,887 @@
+---
+// Hero.astro - Teaser section with project overview
+import ActiveExplorationSession from './ActiveExplorationSession.astro';
+
+const rawBase = import.meta.env.BASE_URL ?? '/';
+const normalizedBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}`;
+---
+<section id="hero" class="content-section hero-section">
+  <div class="title-wrapper">
+    <div class="title-with-logo">
+      <img src={assetPath('icon.png')} alt="Theory of Space Logo" class="title-logo" />
+      <div class="title-text" id="animated-title">
+        <h5 class="main-title">
+          <span class="title-line">Theory of Space</span>
+        </h5>
+        <p class="subtitle">
+          <span class="title-line">CAN FOUNDATION MODELS CONSTRUCT SPATIAL BELIEFS</span>
+          <span class="title-line">THROUGH ACTIVE PERCEPTION?</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <p class="main-subtitle">
+    <!-- Abstract Placeholder -->
+  </p>
+
+
+  <div class="authors-section">
+    <div class="authors-list">
+      <p class="author-line">
+        <a href="https://williamzhangsjtu.github.io/">Pingyue Zhang<sup class="affiliation-marker">1</sup>*</a>,
+        <a href="#">Zihan Huang<sup class="affiliation-marker">2</sup>*</a>,
+        <a href="#">Yue Wang<sup class="affiliation-marker">3</sup>*</a>,
+        <a href="https://jieyuz2.github.io/">Jieyu Zhang<sup class="affiliation-marker">4</sup>*</a>,
+        <a href="#">Letian Xue<sup class="affiliation-marker">1</sup></a>,
+        <a href="https://zihanwang314.github.io/">Zihan Wang<sup class="affiliation-marker">1</sup></a>,
+        <a href="https://qinengwang-aiden.github.io/">Qineng Wang<sup class="affiliation-marker">1</sup></a>
+      </p>
+      <p class="author-line">
+        <a href="https://keshik6.github.io/">Keshigeyan Chandrasegaran<sup class="affiliation-marker">5</sup></a>,
+        <a href="https://ruohanzhang.com/">Ruohan Zhang<sup class="affiliation-marker">5</sup></a>,
+        <a href="https://yejinc.github.io/">Yejin Choi<sup class="affiliation-marker">5</sup></a>,
+        <a href="https://www.ranjaykrishna.com/index.html">Ranjay Krishna<sup class="affiliation-marker">4</sup></a>,
+        <a href="https://jiajunwu.com/">Jiajun Wu<sup class="affiliation-marker">5</sup></a>,
+        <a href="https://profiles.stanford.edu/fei-fei-li">Li Fei-Fei<sup class="affiliation-marker">5</sup></a>,
+        <a href="https://limanling.github.io/">Manling Li<sup class="affiliation-marker">1</sup></a>
+      </p>
+      <p class="affiliations">
+        <sup class="affiliation-marker">1</sup>Northwestern University,
+        <sup class="affiliation-marker">2</sup>Shanghai Jiaotong University,
+        <sup class="affiliation-marker">3</sup>Cornell University,
+        <sup class="affiliation-marker">4</sup>University of Washington,
+        <sup class="affiliation-marker">5</sup>Stanford University
+      </p>
+      <p class="equal-contribution">*equal contribution</p>
+    </div>
+  </div>  
+
+  <div class="resources-section">
+    <div class="resources-buttons">
+      <a href="https://github.com/williamzhangNU/Theory-of-Space" class="cta-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="button-icon" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        <span class="button-text">Code</span>
+      </a>
+
+      <!-- <a href="https://enact-embodied-cognition.github.io/enact.pdf" class="resource-button"> -->
+      <!-- <a href="https://enact-embodied-cognition.github.io/enact.pdf" class="resource-button">
+        <i class="fas fa-file-alt resource-icon"></i>
+        <span>Paper</span>
+      </a> -->
+      <!-- now is the arxiv button -->
+      <a href="#" class="resource-button">
+        <i class="ai ai-arxiv resource-icon"></i>
+        <span>Coming Soon</span>
+      </a>
+      <a href="https://huggingface.co/datasets/yw12356/tos_dataset_0109_3room_100runs" class="resource-button">
+        <i class="fas fa-database resource-icon"></i>
+        <span>Dataset</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-wrapper">
+      <video
+        src={assetPath('videos/tos_video.mov')}
+        controls
+        playsinline
+        preload="metadata"
+        class="video-player"
+      >
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div class="hero-qa">
+    <!-- Theory of Space Definition Section -->
+    <div class="qa-item">
+      <h3 class="qa-question">What is <span class="tos-text">Theory of Space</span>?</h3>
+      <p class="qa-answer">
+        <span class="tos-text">Theory of Space</span> is the ability to build a mental map from partial views. We define it as three coupled abilities:
+      </p>
+      <div class="tos-definition-grid">
+        <div class="tos-definition-card tos-construct">
+          <div class="tos-definition-number">01</div>
+          <div class="tos-definition-content">
+            <h4 class="tos-definition-title">Construct</h4>
+            <p class="tos-definition-text">Actively explore and integrate partial observations into a globally consistent belief.</p>
+          </div>
+        </div>
+        <div class="tos-definition-card tos-update">
+          <div class="tos-definition-number">02</div>
+          <div class="tos-definition-content">
+            <h4 class="tos-definition-title">Update</h4>
+            <p class="tos-definition-text">Revise the belief when new evidence conflicts with earlier assumptions.</p>
+          </div>
+        </div>
+        <div class="tos-definition-card tos-exploit">
+          <div class="tos-definition-number">03</div>
+          <div class="tos-definition-content">
+            <h4 class="tos-definition-title">Exploit</h4>
+            <p class="tos-definition-text">Use the current belief to answer spatial queries and guide the next action.</p>
+          </div>
+        </div>
+      </div>
+      <div class="qa-figure">
+        <div class="qa-image-wrapper">
+          <img
+            src={assetPath('tos_def.png')}
+            alt="Theory of Space definition"
+            class="qa-image"
+            loading="lazy"
+          />
+        </div>
+        <p class="qa-caption"><span class="tos-text">Theory of Space</span> decomposes into constructing, updating, and utilizing an internal spatial belief.</p>
+      </div>
+
+      <p class="qa-answer">
+        We operationalize this by explicitly probing the agent’s cognitive map during exploration, not just its final answers. This exposes belief accuracy, uncertainty, and how the map evolves over time.
+      </p>
+    </div>
+
+    <!-- Why Theory of Space Section -->
+    <div class="qa-item">
+      <h3 class="qa-question">Why is this problem important?</h3>
+      
+      <ul class="qa-block-list">
+        <li><strong>Active Exploration:</strong> Embodied agents must actively explore to construct spatial beliefs, unlike passive systems.</li>
+        <li><strong>Efficiency Challenge:</strong> Effective exploration requires efficient decision-making under uncertainty, prioritizing information gain.</li>
+      </ul>
+
+      <p class="qa-answer">
+        <strong>Current Limitations:</strong> Multimodal models excel at passive tasks but struggle with active exploration under partial observability. Key bottlenecks include:
+      </p>
+
+      <ul class="qa-block-list">
+        <li><strong>Active vs. Passive Gap:</strong> Models significantly underperform in active settings compared to passive reasoning.</li>
+        <li><strong>Modality Gap:</strong> Vision-based performance lags behind text-based reasoning.</li>
+        <li><strong>Inefficiency:</strong> Models require far more actions than optimal proxies.</li>
+      </ul>
+
+      <div class="qa-figure">
+        <div class="qa-image-wrapper">
+          <img
+            src={assetPath('vision_cost_perf.png')}
+            alt="Cost vs. evaluation accuracy in VisionWorld"
+            class="qa-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <p class="qa-caption" style="text-align: center; margin-top: 1rem;">
+        Cost vs. evaluation accuracy in VisionWorld; faded icons indicate passive logs (reasoning only).
+      </p>
+    </div>
+    <!-- <div class="qa-item">
+      <h3 class="qa-question">What is the challenge?</h3>
+      <p class="qa-answer">
+        The challenge is decision making under uncertainty: the agent must choose informative actions and keep a consistent global belief while observations are local, partial, and noisy.
+      </p>
+      <div class="qa-figure">
+        <div class="qa-image-wrapper">
+          <img
+            src={assetPath('explore.jpg')}
+            alt="Active exploration under partial observability"
+            class="qa-image"
+            loading="lazy"
+          />
+        </div>
+        <p class="qa-caption">Active exploration under partial observability requires choosing informative observations to reduce uncertainty.</p>
+      </div>
+      <p class="qa-answer">
+        This requires the agent to:
+      </p>
+      <ul class="qa-list">
+        <li>Recognize what is still unknown and plan actions to resolve it.</li>
+        <li>Trade off exploration cost with information gain, not just coverage.</li>
+        <li>Fuse egocentric views into a stable allocentric map, even with vision noise.</li>
+      </ul>
+    </div> -->
+
+
+
+
+    <div class="qa-item">
+      <h3 class="qa-question">What do we do?</h3>
+      <p class="qa-answer">
+        We build a benchmark where models must explore and reveal their spatial beliefs. Text-based and vision-based worlds are paired so we can isolate reasoning vs perception.
+      </p>
+      
+      <!-- Subsection: Exploration Environment -->
+      <div class="qa-block">
+        <h4 class="qa-subheading">Exploration Environment</h4>
+        <div class="qa-block-content">
+          <div class="video-wrapper" style="margin-bottom: 1.5rem; max-width: 900px;">
+            <video
+              src={assetPath('videos/tos_video_exp.mov')}
+              controls
+              playsinline
+              preload="metadata"
+              class="video-player"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p class="qa-answer">
+            Procedurally generated multi-room layouts on N×M grid with paired environments:
+          </p>
+          <ul class="qa-block-list">
+            <li><strong>Text World</strong>: symbolic observations with direction/distance bins (pure reasoning)</li>
+            <li><strong>Vision World</strong>: egocentric RGB images from ThreeDWorld (perception + reasoning)</li>
+          </ul>
+          
+          <div class="action-table-wrapper">
+            <h5 class="action-title">Action Space</h5>
+            <div class="action-grid">
+              <div class="action-item">
+                <span class="action-name">Goto</span>
+                <span class="action-desc">Move to visible object</span>
+              </div>
+              <div class="action-item">
+                <span class="action-name">Rotate</span>
+                <span class="action-desc">Turn 90°/180°/270°</span>
+              </div>
+              <div class="action-item">
+                <span class="action-name">Observe <span class="action-cost">(Cost: 1)</span></span>
+                <span class="action-desc">Get text/visual view</span>
+              </div>
+              <div class="action-item">
+                <span class="action-name">Query <span class="action-cost">(Cost: 2)</span></span>
+                <span class="action-desc">Get coordinates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Exploration Session (Moved here) -->
+      <div style="transform: scale(0.9); transform-origin: top center; margin-bottom: -2rem;">
+        <ActiveExplorationSession />
+      </div>
+
+      <!-- Subsection: Task Suite -->
+      <div class="qa-block">
+        <h4 class="qa-subheading">Task Suite</h4>
+        <div class="qa-block-content">
+          <div class="video-wrapper" style="margin-bottom: 1.5rem; max-width: 900px;">
+            <video
+              src={assetPath('videos/tos_video_eval.mov')}
+              controls
+              playsinline
+              preload="metadata"
+              class="video-player"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p class="qa-answer">
+            We evaluate how the learned map is used at two levels:
+          </p>
+          <ul class="qa-block-list">
+            <li><strong>Route-level</strong> tasks test egocentric, path-based reasoning.</li>
+            <li><strong>Survey-level</strong> tasks test allocentric, map-like reasoning.</li>
+          </ul>
+          <p class="qa-answer">
+            Survey-level probes ask whether a model can infer unseen views and handle geometric transformations beyond memorized paths.
+          </p>
+          <div class="qa-figure" style="margin-top: 1.5rem;">
+            <div class="qa-image-wrapper">
+              <img
+                src={assetPath('tos_eval.png')}
+                alt="Task suite for Theory of Space"
+                class="qa-image"
+                loading="lazy"
+              />
+            </div>
+            <p class="qa-caption">Task suite for <span class="tos-text">Theory of Space</span> covering route-level and survey-level belief.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subsection: False Belief -->
+      <div class="qa-block">
+        <h4 class="qa-subheading">Belief Update</h4>
+        <div class="qa-block-content">
+          <div class="gif-wrapper" style="margin-bottom: 1.5rem;">
+            <img
+              src={assetPath('videos/tos_video_fb.gif')}
+              alt="False belief update task"
+              class="gif-player"
+            />
+          </div>
+          <p class="qa-answer">
+            We introduce a dynamic perturbation task to probe <strong>Belief Update</strong>. After exploration, objects are secretly relocated, creating a "false belief" that conflicts with new observations.
+          </p>
+          <ul class="qa-block-list">
+            <li><strong>Task:</strong> The agent must actively re-explore to identify changes and revise its map.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Subsection: Disentanglement -->
+      <div class="qa-block" style="margin-top: -0.5rem;">
+        <h4 class="qa-subheading">Disentangling Exploration from Reasoning</h4>
+        <div class="qa-block-content">
+          <div class="gif-wrapper" style="margin-bottom: 1.5rem;">
+            <img
+              src={assetPath('videos/tos_video_passive_active.gif')}
+              alt="Active vs Passive exploration comparison"
+              class="gif-player"
+            />
+          </div>
+          <p class="qa-answer">
+            We disentangle <strong>exploration ability</strong> from <strong>reasoning ability</strong> using scripted proxy agents:
+          </p>
+          <ul class="qa-block-list">
+            <li><strong>SCOUT</strong> (vision): rotates 360° at each location for full coverage</li>
+            <li><strong>STRATEGIST</strong> (text): belief-driven policy to maximally reduce ambiguity</li>
+          </ul>
+          <div class="qa-protocols-grid">
+            <div class="qa-protocol-item">
+              <h4 class="qa-protocol-title">Active Exploration</h4>
+              <p class="qa-protocol-description">Agent plans its own actions, balancing cost vs. information gain.</p>
+            </div>
+            <div class="qa-protocol-item">
+              <h4 class="qa-protocol-title">Passive Comprehension</h4>
+              <p class="qa-protocol-description">Model reasons from proxy-collected logs, isolating reasoning from exploration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Subsection: Probing Internal Belief -->
+      <div class="qa-block">
+        <h4 class="qa-subheading">Probing Internal Belief</h4>
+        <div class="qa-block-content">
+          <div class="qa-figure" style="margin-top: 1.5rem;">
+            <div class="qa-image-wrapper">
+              <img
+                src={assetPath('spatial_belief.png')}
+                alt="Spatial belief probing"
+                class="qa-image"
+                loading="lazy"
+              />
+            </div>
+            <p class="qa-caption">Spatial belief probing: externalize a cognitive map and identify unexplored regions.</p>
+          </div>
+          <p class="qa-answer">
+            We provide a direct window into the agent's spatial belief via <strong>explicit cognitive-map probing</strong>:
+          </p>
+          <ul class="qa-block-list">
+            <li>Agent outputs a structured cognitive map (N×M grid) at each step</li>
+            <li>Scored on <strong>correctness</strong> (ground-truth alignment) and <strong>consistency</strong> (internal coherence)</li>
+            <li>Also probes uncertainty by identifying unobserved regions</li>
+          </ul>
+          <div class="gif-wrapper" style="margin-bottom: 1.5rem;">
+            <img
+              src={assetPath('videos/tos_video_belief.gif')}
+              alt="Probing internal belief"
+              class="gif-player"
+            />
+          </div>
+          <p class="qa-answer" style="margin-top: 1rem;">
+            <strong>Key bottlenecks identified:</strong>
+          </p>
+          <ul class="qa-block-list">
+            <li><strong>Modality gap</strong>: performance drops markedly in vision vs. text</li>
+            <li><strong>Vision perception</strong>: especially challenging for object orientation</li>
+            <li><strong>Unstable predictions</strong>: cognitive map degrades beyond initial perception errors</li>
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  
+
+</section> 
+
+<script>
+  // Format numbers to show 'k' for thousands
+  function formatNumber(num: number) {
+    return num > 999 ? (num / 1000).toFixed(1) + 'k' : String(num);
+  }
+
+  // Fetch GitHub stats directly
+  async function fetchGitHubStats() {
+    try {
+      // Try to use default numbers immediately
+      const starsElement = document.getElementById('hero-stars-count');
+      const forksElement = document.getElementById('hero-forks-count');
+      
+      // Fetch latest stats from GitHub
+      const response = await fetch('https://api.github.com/repos/williamzhangNU/VAGEN');
+      const data = await response.json();
+      
+      const stars = data.stargazers_count;
+      const forks = data.forks_count;
+      
+      // Update stars count if available and different from default
+      if (starsElement && stars !== undefined) {
+        const formattedStars = formatNumber(stars);
+        if (formattedStars !== '1.4k') {
+          starsElement.textContent = formattedStars;
+        }
+      }
+      
+      // Update forks count if available and different from default
+      if (forksElement && forks !== undefined) {
+        const formattedForks = formatNumber(forks);
+        if (formattedForks !== '105') {
+          forksElement.textContent = formattedForks;
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching GitHub stats:', error);
+      // Keep default values on error
+    }
+  }
+
+  // Run when page is loaded
+  document.addEventListener('DOMContentLoaded', fetchGitHubStats);
+</script> 
+
+<style>
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #2a2f6c, #4b4f8f);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(42, 47, 108, 0.2);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 47, 108, 0.3);
+    text-decoration: none;
+  }
+
+  .button-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .button-text {
+    margin-right: 12px;
+  }
+
+  .repo-stats {
+    display: flex;
+    gap: 16px;
+    padding-left: 16px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    font-size: 16px;
+  }
+
+  .stat-item svg {
+    fill: currentColor;
+  }
+
+  .main-subtitle {
+    max-width: 800px;
+    margin: 20px auto 0;
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .vagen-announcement {
+    color: #2a2f6c;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .vagen-announcement:hover {
+    color: #4b4f8f;
+    text-decoration: none;
+  }
+
+  /* Video Section Styles */
+  .video-section {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .video-wrapper {
+    max-width: min(1200px, var(--page-max-width, 1500px));
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    border: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  .video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+
+  /* GIF Wrapper Styles */
+  .gif-wrapper {
+    max-width: min(800px, var(--page-max-width, 1500px));
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    border: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  .gif-player {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ced4da;
+    color: #6c757d;
+    min-height: 400px;
+  }
+
+  .video-placeholder-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    color: #adb5bd;
+    opacity: 0.6;
+  }
+
+  .video-placeholder-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-placeholder-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6c757d;
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .video-section {
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .video-placeholder {
+      min-height: 300px;
+    }
+
+    .video-placeholder-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .video-placeholder-text {
+      font-size: 0.95rem;
+      padding: 0 1rem;
+    }
+  }
+
+  /* QA Block Styles */
+  .qa-block {
+    margin-bottom: 0rem;
+  }
+
+  .qa-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .qa-subheading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2a60;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: 0.2px;
+  }
+
+  .qa-block-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2a60;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .qa-bullet {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #2a2f6c;
+  }
+
+  .qa-block-label {
+    letter-spacing: 0.2px;
+  }
+
+  .qa-block-content {
+    padding: 1rem 2rem;
+  }
+
+  .tos-definition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .tos-definition-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .tos-definition-number {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: currentColor;
+    min-width: 42px;
+  }
+
+  .tos-definition-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #2a2f6c;
+  }
+
+  .tos-definition-text {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  .tos-construct {
+    color: #1976d2;
+    background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+  }
+
+  .tos-update {
+    color: #7b1fa2;
+    background: linear-gradient(135deg, #ffffff 0%, #f3e5f5 100%);
+  }
+
+  .tos-exploit {
+    color: #00796b;
+    background: linear-gradient(135deg, #ffffff 0%, #e0f2f1 100%);
+  }
+
+  .qa-block-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .qa-block-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: #2e2e2e;
+    line-height: 1.7;
+    font-size: 1.2rem;
+  }
+
+  .qa-block-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #2a2f6c;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .qa-block .qa-figure {
+    margin-top: 1.5rem;
+  }
+
+  /* QA Protocols Grid */
+  .qa-protocols-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .qa-protocol-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+  }
+
+  .qa-protocol-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1565c0;
+    margin: 0;
+  }
+
+  .qa-protocol-description {
+    font-size: 1.05rem;
+    color: #2e2e2e;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .qa-protocols-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  /* QA Figure Styles */
+  .qa-figure {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .qa-image-wrapper {
+    width: 80%;
+    max-width: min(800px, var(--page-max-width, 1500px));
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    margin: 0 auto;
+  }
+
+  .qa-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .qa-caption {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .tos-definition-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qa-figure {
+      margin-top: 1.5rem;
+    }
+
+    .qa-caption {
+      font-size: 0.85rem;
+      padding: 0 1rem;
+    }
+  }
+
+  /* Action Grid Styles */
+  .action-table-wrapper {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .action-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2a2f6c;
+    margin: 0 0 0.8rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .action-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .action-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.95rem;
+  }
+
+  .action-cost {
+    font-weight: 400;
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-left: 0.3rem;
+  }
+
+  .action-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+</style>
