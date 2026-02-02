@@ -4,7 +4,7 @@
 
 <section id="belief-update" class="content-section alt-background">
   <div class="section-container">
-    <h2 class="section-title">Belief Update Task</h2>
+    <h2 class="section-title">Belief Revision Task</h2>
     <p class="section-description">
       We introduce a dynamic perturbation task to probe the agent's ability to handle non-stationarity.
       After exploration, 4 objects are secretly relocated/reoriented. The agent must re-explore to identify changes.
@@ -15,7 +15,7 @@
         <li><strong>Identification Accuracy:</strong> F1 score for correctly identifying which objects changed.</li>
         <li><strong>Average Steps:</strong> Cost of belief revision. Includes <em>Redundancy</em> (steps taken after finding all changes).</li>
         <li><strong>Belief Correctness:</strong> Map accuracy on the changed objects.</li>
-        <li><strong>Belief Update:</strong> Measures if the agent overwrites its old map (high score) or exhibits belief inertia (low score).</li>
+        <li><strong>Belief Revision:</strong> Measures if the agent overwrites its old map (high score) or exhibits belief inertia (low score).</li>
       </ul>
     </div>
 
@@ -28,7 +28,7 @@
             <th colspan="2" class="group-header">Avg. Steps &darr;</th>
             <th colspan="2" class="group-header">Identification (%) &uarr;</th>
             <th colspan="2" class="group-header">Belief Correctness (%) &uarr;</th>
-            <th colspan="2" class="group-header">Belief Update (%) &uarr;</th>
+            <th colspan="2" class="group-header">Belief Inertia (%) &darr;</th>
           </tr>
           <!-- Row 2: Sub-headers -->
           <tr>
@@ -102,20 +102,20 @@
 
     <!-- Conclusion -->
     <div class="results-analysis-single" style="margin-top: 2rem;">
-      <h3 class="analysis-heading">Belief Update Conclusion</h3>
+      <h3 class="analysis-heading">Belief Revision Conclusion</h3>
       <div class="findings-grid">
         <div class="finding-item">
           <span class="finding-icon">🔄</span>
           <div class="finding-content">
             <strong>Severe Belief Inertia in Vision</strong>
-            <span class="finding-detail">Vision agents fail to overwrite obsolete orientation beliefs despite new evidence (Belief Update score ~20%).</span>
+            <span class="finding-detail">Vision agents fail to overwrite obsolete orientation beliefs despite new evidence (Belief Revision score ~20%).</span>
           </div>
         </div>
         <div class="finding-item">
           <span class="finding-icon">🛑</span>
           <div class="finding-content">
             <strong>High Redundancy</strong>
-            <span class="finding-detail">Vision agents take many redundant steps after changes are visible, indicating failure to recognize the update is complete.</span>
+            <span class="finding-detail">Vision agents take many redundant steps after changes are visible, indicating failure to recognize the revision is complete.</span>
           </div>
         </div>
       </div>
