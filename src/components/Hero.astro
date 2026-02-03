@@ -125,7 +125,7 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
           <div class="tos-definition-number">03</div>
           <div class="tos-definition-content">
             <h4 class="tos-definition-title">Exploit</h4>
-            <p class="tos-definition-text">Use the current belief to answer spatial queries and guide the next action.</p>
+            <p class="tos-definition-text">Use the current belief to answer spatial queries.</p>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
             loading="lazy"
           />
         </div>
-        <p class="qa-caption"><span class="tos-text">Theory of Space</span> decomposes into constructing, updating, and exploiting an internal spatial belief.</p>
+        <p class="qa-caption"><span class="tos-text">Theory of Space</span> decomposes into constructing, revising, and exploiting an internal spatial belief.</p>
       </div>
 
       <p class="qa-answer">
@@ -380,7 +380,7 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
           </p>
           <ul class="qa-block-list">
             <li>Agent outputs a structured cognitive map (N×M grid) at each step</li>
-            <li>Scored on <strong>correctness</strong> (ground-truth alignment) and <strong>consistency</strong> (internal coherence)</li>
+            <li>Scored on <strong>correctness</strong> (ground-truth alignment) and other dynamic metrics</li>
             <li>Also probes uncertainty by identifying unobserved regions</li>
           </ul>
           <div class="gif-wrapper" style="margin-bottom: 1.5rem;">
@@ -390,14 +390,6 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
               class="gif-player"
             />
           </div>
-          <p class="qa-answer" style="margin-top: 1rem;">
-            <strong>Key bottlenecks identified:</strong>
-          </p>
-          <ul class="qa-block-list">
-            <li><strong>Modality gap</strong>: performance drops markedly in vision vs. text</li>
-            <li><strong>Vision perception</strong>: especially challenging for object orientation</li>
-            <li><strong>Unstable predictions</strong>: cognitive map degrades beyond initial perception errors</li>
-          </ul>
         </div>
       </div>
 
