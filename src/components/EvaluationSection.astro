@@ -474,7 +474,7 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
     tbody.innerHTML = '';
     const dataList = tosData[currentMode][currentEnv];
     
-    // Calculate highlights dynamically
+    // Calculate highlights dynamically - separately for proprietary and open-source models
     const calculateHighlights = (data: ModelData[], hasExp: boolean) => {
       const highlights: { [key: string]: number[] } = {};
       const numCols = hasExp ? 1 + 5 + 4 + 1 : 5 + 4 + 1; // exp + route + survey + avg
@@ -483,60 +483,60 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
         highlights[model.name] = new Array(numCols).fill(0);
       });
       
-      let colIdx = 0;
+      // Split data by model type
+      const proprietary = data.filter(m => m.type === 'proprietary');
+      const openweight = data.filter(m => m.type === 'openweight');
       
-      // Exp cost (lower is better)
-      if (hasExp) {
-        const expValues = data.map(m => m.exp || 0);
-        const bestExp = Math.min(...expValues);
-        const uniqueValues = [...new Set(expValues)].sort((a, b) => a - b);
-        const secondExp = uniqueValues.length > 1 ? uniqueValues[1] : bestExp;
+      // Helper function to calculate highlights for a group
+      const calcGroupHighlights = (group: ModelData[], startColIdx: number, hasExpCol: boolean) => {
+        if (group.length === 0) return;
+        let colIdx = startColIdx;
         
-        data.forEach((model) => {
-          if (model.exp === bestExp) highlights[model.name][colIdx] = 1;
-          else if (model.exp === secondExp) highlights[model.name][colIdx] = 2;
-        });
-        colIdx++;
-      }
-      
-      // Route tasks (higher is better)
-      for (let i = 0; i < 5; i++) {
-        const values = data.map(m => m.route[i]);
-        const best = Math.max(...values);
-        const uniqueValues = [...new Set(values)].sort((a, b) => b - a);
-        const second = uniqueValues.length > 1 ? uniqueValues[1] : best;
+        // Exp cost (lower is better)
+        if (hasExpCol) {
+          const expValues = group.map(m => m.exp || 0);
+          const bestExp = Math.min(...expValues);
+          
+          group.forEach((model) => {
+            if (model.exp === bestExp) highlights[model.name][colIdx] = 1;
+          });
+          colIdx++;
+        }
         
-        data.forEach((model) => {
-          if (model.route[i] === best) highlights[model.name][colIdx] = 1;
-          else if (model.route[i] === second) highlights[model.name][colIdx] = 2;
-        });
-        colIdx++;
-      }
-      
-      // Survey tasks (higher is better)
-      for (let i = 0; i < 4; i++) {
-        const values = data.map(m => m.survey[i]);
-        const best = Math.max(...values);
-        const uniqueValues = [...new Set(values)].sort((a, b) => b - a);
-        const second = uniqueValues.length > 1 ? uniqueValues[1] : best;
+        // Route tasks (higher is better)
+        for (let i = 0; i < 5; i++) {
+          const values = group.map(m => m.route[i]);
+          const best = Math.max(...values);
+          
+          group.forEach((model) => {
+            if (model.route[i] === best) highlights[model.name][colIdx] = 1;
+          });
+          colIdx++;
+        }
         
-        data.forEach((model) => {
-          if (model.survey[i] === best) highlights[model.name][colIdx] = 1;
-          else if (model.survey[i] === second) highlights[model.name][colIdx] = 2;
+        // Survey tasks (higher is better)
+        for (let i = 0; i < 4; i++) {
+          const values = group.map(m => m.survey[i]);
+          const best = Math.max(...values);
+          
+          group.forEach((model) => {
+            if (model.survey[i] === best) highlights[model.name][colIdx] = 1;
+          });
+          colIdx++;
+        }
+        
+        // Avg (higher is better)
+        const avgValues = group.map(m => m.avg);
+        const bestAvg = Math.max(...avgValues);
+        
+        group.forEach((model) => {
+          if (model.avg === bestAvg) highlights[model.name][colIdx] = 1;
         });
-        colIdx++;
-      }
+      };
       
-      // Avg (higher is better)
-      const avgValues = data.map(m => m.avg);
-      const bestAvg = Math.max(...avgValues);
-      const uniqueValues = [...new Set(avgValues)].sort((a, b) => b - a);
-      const secondAvg = uniqueValues.length > 1 ? uniqueValues[1] : bestAvg;
-      
-      data.forEach((model) => {
-        if (model.avg === bestAvg) highlights[model.name][colIdx] = 1;
-        else if (model.avg === secondAvg) highlights[model.name][colIdx] = 2;
-      });
+      // Calculate highlights separately for each group
+      calcGroupHighlights(proprietary, 0, hasExp);
+      calcGroupHighlights(openweight, 0, hasExp);
       
       return highlights;
     };
