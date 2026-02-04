@@ -9,19 +9,51 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
   <div class="section-container">
     <h2 class="section-title">Key Findings</h2>
     <div class="findings-grid-cards">
-      <!-- Finding 1 -->
+      <!-- Finding 1: Modality Gap -->
       <details class="finding-card finding-1" open>
         <summary class="finding-header">
           <div class="finding-number">01</div>
           <div class="finding-content">
-            <h3 class="finding-title">Active Exploration Bottleneck</h3>
-            <p class="finding-summary">Active exploration is the bottleneck.</p>
+            <h3 class="finding-title">Modality Gap</h3>
+            <p class="finding-summary">Text significantly outperforms vision.</p>
           </div>
           <span class="finding-toggle" aria-hidden="true"></span>
         </summary>
         <div class="finding-details">
           <p class="finding-text">
-            Active exploration is a key bottleneck: performance drops when models must choose actions under partial observability, compared to passive comprehension from standardized logs.
+            A clear modality gap persists: text-based settings consistently outperform vision-based settings in spatial belief construction and exploitation.
+          </p>
+          <div class="finding-media-grid finding-media-grid-2">
+            <img
+              src={assetPath('vision-text-gap-passive.png')}
+              alt="Vision vs text gap under passive setting"
+              class="finding-media"
+              loading="lazy"
+            />
+            <img
+              src={assetPath('vision-text-gap-active.png')}
+              alt="Vision vs text gap under active setting"
+              class="finding-media"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </details>
+
+      <!-- Finding 2: Active Exploration Bottleneck -->
+      <details class="finding-card finding-2" open>
+        <summary class="finding-header">
+          <div class="finding-number">02</div>
+          <div class="finding-content">
+            <h3 class="finding-title">Active Exploration is the Bottleneck</h3>
+            <p class="finding-summary">Performance drops when models must actively explore.</p>
+          </div>
+          <span class="finding-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="finding-details">
+          <h4 class="finding-subtitle">a) Performance and Efficiency Deficit</h4>
+          <p class="finding-text">
+            Active agents score lower than reasoning on rule-based program histories, and explore less efficiently than the program.
           </p>
           <div class="finding-media-grid">
             <div class="finding-media-left-col">
@@ -47,51 +79,13 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
               />
             </div>
           </div>
-        </div>
-      </details>
 
-      <!-- Finding 2 -->
-      <details class="finding-card finding-2" open>
-        <summary class="finding-header">
-          <div class="finding-number">02</div>
-          <div class="finding-content">
-            <h3 class="finding-title">Modality Gap</h3>
-            <p class="finding-summary">Text stays ahead of vision.</p>
-          </div>
-          <span class="finding-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="finding-details">
+          <h4 class="finding-subtitle">b) Incomplete Coverage</h4>
           <p class="finding-text">
-            A clear modality gap persists: text-based settings consistently outperform vision-based settings in spatial belief construction and exploitation.
+            Active agent fails to achieve complete information coverage. Models explore redundantly, requiring ≥14 steps without improving belief accuracy, while rule-based proxies reach target coverage in ~9 steps.
           </p>
-          <div class="finding-media-grid finding-media-grid-2">
-            <img
-              src={assetPath('vision-text-gap-passive.png')}
-              alt="Vision vs text gap under passive setting"
-              class="finding-media"
-              loading="lazy"
-            />
-            <img
-              src={assetPath('vision-text-gap-active.png')}
-              alt="Vision vs text gap under active setting"
-              class="finding-media"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </details>
 
-      <!-- Finding 3 -->
-      <details class="finding-card finding-3" open>
-        <summary class="finding-header">
-          <div class="finding-number">03</div>
-          <div class="finding-content">
-            <h3 class="finding-title">Active-Passive Gap Increases with Complexity</h3>
-            <p class="finding-summary">Gemini-3 Pro scales much better.</p>
-          </div>
-          <span class="finding-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="finding-details">
+          <h4 class="finding-subtitle">c) Complexity-Widened Gap</h4>
           <p class="finding-text">
             The active–passive gap increases with complexity; Gemini-3 Pro scales much better. As the number of rooms increases, exploration cost rises accordingly. For both GPT-5.2 and Gemini-3 Pro, performance declines as the room number increases, and the active–passive performance gap widens with room number.
           </p>
@@ -138,20 +132,85 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
         </div>
       </details>
 
-      <!-- Finding 4 -->
-      <details class="finding-card finding-4" open>
+      <!-- Finding 3: Cognitive Map Failures -->
+      <details class="finding-card finding-3" open>
         <summary class="finding-header">
-          <div class="finding-number">04</div>
+          <div class="finding-number">03</div>
           <div class="finding-content">
-            <h3 class="finding-title">Bottleneck: Perception & Stability</h3>
-            <p class="finding-summary">Perception noise and unstable belief.</p>
+            <h3 class="finding-title">Cognitive Map Failures</h3>
+            <p class="finding-summary">Orientation, stability, and belief drift issues.</p>
           </div>
           <span class="finding-toggle" aria-hidden="true"></span>
         </summary>
         <div class="finding-details">
+          <ul class="finding-list">
+            <li><strong>Orientation Gap:</strong> Vision perception is a bottleneck, especially for object orientation.</li>
+            <li><strong>Unstable Map:</strong> Beliefs about previously observed objects degrade over time.</li>
+            <li><strong>Belief Drift:</strong> New updates corrupt earlier correct perceptions, lowering final correctness.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- Finding 4: Maps as Diagnostic Proxy -->
+      <details class="finding-card finding-4" open>
+        <summary class="finding-header">
+          <div class="finding-number">04</div>
+          <div class="finding-content">
+            <h3 class="finding-title">Maps as a Diagnostic Proxy</h3>
+            <p class="finding-summary">Map correctness correlates with downstream success.</p>
+          </div>
+          <span class="finding-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="finding-details">
+          <ul class="finding-list">
+            <li><strong>Sufficiency Test:</strong> Conditioning on ground-truth maps yields near-perfect accuracy (~95%), confirming the JSON map format captures all necessary information for tasks.</li>
+            <li><strong>Alignment Test:</strong> Prompting models to explicitly generate maps before answering slightly degrades performance. This <em>externalization gap</em> indicates the model's latent internal belief is richer than its discretized JSON output.</li>
+          </ul>
           <p class="finding-text">
-            Vision perception remains a key bottleneck, especially for object orientation. Unstable cognitive map prediction degrades spatial belief beyond initial perception.
+            <strong>While lossy, the explicit map remains a strong diagnostic proxy.</strong> Map correctness correlates significantly with downstream success:
           </p>
+          <div class="finding-table-wrapper finding-table-compact">
+            <table class="finding-table">
+              <thead>
+                <tr class="table-header-main">
+                  <th class="col-method">Methods</th>
+                  <th>Text (%)</th>
+                  <th>Vision (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="row-label">GPT-5.2</td>
+                  <td>41.8</td>
+                  <td>57.0</td>
+                </tr>
+                <tr>
+                  <td class="row-label">Gemini-3 Pro</td>
+                  <td>46.6</td>
+                  <td>64.5</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="table-caption">Pearson correlation (r) between spatial-belief correctness and downstream evaluation performance. All correlations are significant (p&lt;.001).</p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Finding 5: Vision Deficiencies & Belief Inertia -->
+      <details class="finding-card finding-5" open>
+        <summary class="finding-header">
+          <div class="finding-number">05</div>
+          <div class="finding-content">
+            <h3 class="finding-title">Vision Deficiencies & Belief Inertia</h3>
+            <p class="finding-summary">Vision agents persist in obsolete beliefs.</p>
+          </div>
+          <span class="finding-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="finding-details">
+          <ul class="finding-list">
+            <li><strong>Vision-based Revision Failures:</strong> Vision agents suffer from excessive exploration redundancy and poor accuracy in identifying object shifts.</li>
+            <li><strong>Belief Inertia:</strong> Agents, especially vision-based ones, persist in obsolete spatial coordinates despite new observations.</li>
+          </ul>
         </div>
       </details>
     </div>
@@ -464,6 +523,60 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
 
   .finding-4:hover {
     background: linear-gradient(135deg, #ffffff 0%, #b2dfdb 100%);
+  }
+
+  /* Finding 5 - Red gradient */
+  .finding-5 {
+    color: #c62828;
+    background: linear-gradient(135deg, #ffffff 0%, #ffebee 100%);
+  }
+
+  .finding-5:hover {
+    background: linear-gradient(135deg, #ffffff 0%, #ffcdd2 100%);
+  }
+
+  /* Sub-section headings */
+  .finding-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2a2f6c;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .finding-subtitle:first-of-type {
+    margin-top: 0;
+  }
+
+  /* Bullet list styling */
+  .finding-list {
+    margin: 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .finding-list li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  .finding-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Table caption */
+  .table-caption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+  }
+
+  /* Compact table for correlation data */
+  .finding-table-compact {
+    max-width: 400px;
   }
 
   @media (max-width: 768px) {
