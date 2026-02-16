@@ -55,7 +55,11 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
       </p>
       <p class="equal-contribution">*equal contribution</p>
     </div>
-  </div>  
+  </div>
+
+  <div class="iclr-announcement">
+    <p class="iclr-badge">🔥 Accepted by ICLR 2026 under equal contribution 🔥</p>
+  </div>
 
   <div class="resources-section">
     <div class="resources-buttons">
@@ -879,5 +883,24 @@ const assetPath = (path: string) => `${normalizedBase}${path.replace(/^\//, '')}
   .action-desc {
     font-size: 0.9rem;
     color: #64748b;
+  }
+
+  /* ICLR Announcement Styles */
+  .iclr-announcement {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 2.5rem 0;
+  }
+
+  .iclr-badge {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ff4444;
+    background: linear-gradient(135deg, #ffe6e6 0%, #fff5f5 100%);
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 2px solid #ff4444;
+    margin: 0;
+    letter-spacing: 0.3px;
   }
 </style>
